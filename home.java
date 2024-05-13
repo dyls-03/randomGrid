@@ -16,10 +16,41 @@ class HelloWorld {
 
         int randMin = 1; // Minimum value of range
 
+
+
         System.out.println("Random value in int from " + randMin + " to " + randMax + ":");
-        int random_int = (int) Math.floor(Math.random() * (randMax - randMin + 1) + randMin);
-        System.out.println(random_int);
+        
+        String outputString = "| ";
+
+        for (int x = 0; x < numGrid; x++)
+        {
+            for (int y = 0; y < numGrid; y++)
+            {
+                outputString = outputString + genRand(randMin, randMax) + " | ";
+            }
+            
+            if (x < (numGrid-1))
+            { outputString = outputString + "\n| "; }
+            
+        }
+
+        System.out.println(outputString);
 
         in.close();
     }
+
+    public static int genRand(int min, int max)
+    {
+        int random_int = (int) Math.floor(Math.random() * (max - min + 1) + min);
+
+        return random_int;
+    }
 }
+
+
+
+/* Need to add:
+ * - Check if grid number is greater than values avaialble, don't let program proceed if grid number is larger than randoms
+ * 
+ * 
+ */

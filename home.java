@@ -17,7 +17,9 @@ class HelloWorld {
         int randMin = 1; // Minimum value of range
 
         System.out.println("Random value in int from " + randMin + " to " + randMax + ":");
-        int random_int = (int) Math.floor(Math.random() * (randMax - randMin + 1) + randMin);4
+        int random_int = (int) Math.floor(Math.random() * (randMax - randMin + 1) + randMin);
         System.out.println(random_int);
+
+        in.close();
     }
 }

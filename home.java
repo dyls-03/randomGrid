@@ -1,6 +1,10 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 class HelloWorld {
+
+    public static ArrayList<Integer> numList = new ArrayList<Integer>();
+    
     public static void main(String[] args) {
         System.out.println("Hello");
 
@@ -14,34 +18,60 @@ class HelloWorld {
         String strNumVals = in.nextLine();
         int randMax = Integer.parseInt(strNumVals);
 
-        int randMin = 1; // Minimum value of range
-
-
-
-        System.out.println("Random value in int from " + randMin + " to " + randMax + ":");
-        
-        String outputString = "| ";
-
-        for (int x = 0; x < numGrid; x++)
+        if (randMax > numGrid)
         {
-            for (int y = 0; y < numGrid; y++)
-            {
-                outputString = outputString + genRand(randMin, randMax) + " | ";
-            }
-            
-            if (x < (numGrid-1))
-            { outputString = outputString + "\n| "; }
-            
-        }
+            //Setting up values
+            int randMin = 1;
+            numList.clear();
 
-        System.out.println(outputString);
+            System.out.println("Random value in int from " + randMin + " to " + randMax + ":");
+            
+            String outputString = "| ";
+
+            for (int x = 0; x < numGrid; x++)
+            {
+                for (int y = 0; y < numGrid; y++)
+                {
+                    outputString = outputString + genRand(randMin, randMax) + " | ";
+                }
+                
+                if (x < (numGrid-1))
+                { outputString = outputString + "\n| "; }
+                
+            }
+
+            System.out.println(outputString);
+        }
+        else
+        {
+            System.out.println("Number of places in grid exceeds your number of entries");
+            System.out.println("Please try again");
+        }
 
         in.close();
     }
 
     public static int genRand(int min, int max)
     {
-        int random_int = (int) Math.floor(Math.random() * (max - min + 1) + min);
+        boolean complete = false;
+        int random_int = -1;
+
+        while (complete == false)
+        {
+            random_int = (int) Math.floor(Math.random() * (max - min + 1) + min);
+
+            boolean temp = true;
+            for (int i : numList)
+            {
+                if (random_int == i)
+                    temp = false;
+            }
+
+            if (temp == true)
+                complete = true;
+        }
+        
+        numList.add(random_int);
 
         return random_int;
     }
@@ -50,7 +80,7 @@ class HelloWorld {
 
 
 /* Need to add:
- * - Check if grid number is greater than values avaialble, don't let program proceed if grid number is larger than randoms
+ * - Loop back if exceed value
  * 
  * 
  */

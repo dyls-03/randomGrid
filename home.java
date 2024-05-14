@@ -23,6 +23,7 @@ class HelloWorld {
             //Setting up values
             int randMin = 1;
             numList.clear();
+            int mid = numGrid/2;
 
             System.out.println("Random value in int from " + randMin + " to " + randMax + ":");
             
@@ -32,7 +33,12 @@ class HelloWorld {
             {
                 for (int y = 0; y < numGrid; y++)
                 {
-                    outputString = outputString + genRand(randMin, randMax) + " | ";
+                    boolean add = true;
+                    if ((x==mid)&&(y==mid))
+                    {
+                        add = false;
+                    }
+                    outputString = outputString + genRand(randMin, randMax, numGrid, add) + " | ";
                 }
                 
                 if (x < (numGrid-1))
@@ -51,10 +57,11 @@ class HelloWorld {
         in.close();
     }
 
-    public static int genRand(int min, int max)
+    public static int genRand(int min, int max, int grid, boolean add)
     {
         boolean complete = false;
         int random_int = -1;
+        
 
         while (complete == false)
         {
@@ -71,7 +78,8 @@ class HelloWorld {
                 complete = true;
         }
         
-        numList.add(random_int);
+        if (add == true)
+            numList.add(random_int);
 
         return random_int;
     }
@@ -83,4 +91,9 @@ class HelloWorld {
  * - Loop back if exceed value
  * 
  * 
+ 
+3x3:9 1:1
+5x5:25 2:2
+7x7:49 3:3
+
  */
